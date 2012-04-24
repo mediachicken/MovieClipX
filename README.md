@@ -1,5 +1,9 @@
-## Retina MovieClip Library (MovieClipX)
-The Retina MovieClip library is exactly what the name implies, it's the MovieClip library with added support for retina displays (@2x graphics for the iPhone 4 and the new iPad) while simultaneously supporting the original non-retina devices.
+## MovieClipX
+MovieClipX (mcx) is a very slick library based off the original MovieClip library. It adds a few very awesome features including
+* mcx objects. A MovieClip master object capable of housing multiple different MovieClip animations.
+* Retina display support.
+* Animation speed control.
+* And more features coming soon.
 
 ## Basic Usage Tutorial
 1. Make sure your `config.lua` file has this tag in it:
@@ -45,5 +49,7 @@ MultiRezer download: http://project239.com/multirezer
 ## Credits
 Garet McKinley (iGARET.com)
 
+## Not satisfied?
+If you've found a problem or want to make a suggestion please by all means, do so! I love to hear feedback! It's what makes it grow with features that people really need.
 
 Thanks for using the Retina MovieClip library!
