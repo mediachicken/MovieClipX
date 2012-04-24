@@ -28,12 +28,16 @@ MultiRezer download: http://project239.com/multirezer
 ## Functions
 `mcx.new()`
 > Creates a new mcx object
+
 `myMCXObject:newAnim(newAnim("animation_name", {frames}, width, height, speed)`
 > Creates a new animation in an mcx object
+
 `myMCXObject:play("animation_name")`
 > Plays an animation in an mcx object
+
 `myMCXObject:stop()`
 > Stops an animation in an mcx object
+
 `myMCXObject:currentAnimation()`
 > Returns the name of the current animation
 
