@@ -1,4 +1,4 @@
-## Retina MovieClip Library
+## Retina MovieClip Library (MovieClipX)
 The Retina MovieClip library is exactly what the name implies, it's the MovieClip library with added support for retina displays (@2x graphics for the iPhone 4 and the new iPad) while simultaneously supporting the original non-retina devices.
 
 ## Basic Usage Tutorial
