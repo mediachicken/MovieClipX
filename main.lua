@@ -1,12 +1,24 @@
-require("movieclip")
+require("mcx")
 
-mc = movieclip.new()
-mc:newAnim("checks", {"check.png", "off.png"}, 12, 13)
-mc:newAnim("icons", {"corona.png", "wordpress.png"}, 12, 13)
+char = mcx.new()
+char:newAnim("walk_forward", {"walk_001.png", "walk_002.png", "walk_003.png", "walk_004.png"}, 85, 85, 3)
+char:newAnim("walk_backward", {"walk_004.png", "walk_003.png", "walk_002.png", "walk_001.png"}, 85, 85, 3)
 
-mc.x = display.contentWidth / 2
-mc.y = display.contentHeight / 2
+char.x = display.contentWidth / 2
+char.y = display.contentHeight / 2
 
 
-mc:play("icons")
-mc:play("checks")
+char:play("walk_forward")
+
+
+function touchEvent(event)
+	if event.phase == "ended" then
+		if char:currentAnimation() == "walk_forward" then
+			char:play("walk_backward")
+		else
+			char:play("walk_forward")
+		end
+	end
+end
+
+char:addEventListener( "touch", touchEvent )
