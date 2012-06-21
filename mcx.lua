@@ -25,9 +25,9 @@ function new()
 			animFrames[i].isVisible = false
 			i = i + 1
 		end
-
+		
 		-- show first frame by default
-		animFrames[1].isVisible = true
+		animFrames[1].isVisible = false
 
 		-------------------------
 		-- Define private methods
