@@ -52,4 +52,4 @@ Garet McKinley (iGARET.com)
 ## Not satisfied?
 If you've found a problem or want to make a suggestion please by all means, do so! I love to hear feedback! It's what makes it grow with features that people really need.
 
-Thanks for using the Retina MovieClip library!
+### Thanks for using the MovieClipX library!
