@@ -27,6 +27,7 @@ char.y = display.contentHeight / 2
 
 
 char:play("walk_left")
+char:pause()
 
 function touchEvent(event)
 	if event.phase == "ended" then

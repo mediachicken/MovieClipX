@@ -5,6 +5,7 @@ function new()
 	local mc = display.newGroup()
 	local clips = {}
 	local active = nil
+	animName = nil
 	
 	function mc:newAnim (name,imageTable,width,height, speed)
 
@@ -426,23 +427,42 @@ function new()
 		mc:insert(g)
 		active = g
 		animName = name
+		paused = false
 	end
 	
 	
 	function mc:play(name)
-		mc:stop()
-		active = clips[name]
-		active.isVisible = true
-		clips[name]:play()
-		animName = name
+		if name == nil and animName == nil then
+			print("Error, no animation name given and no animations can be resumed.")
+		else
+			if name == nil then
+				name = animName
+			end
+			mc:stop()
+			active = clips[name]
+			active.isVisible = true
+			clips[name]:play()
+			animName = name
+			paused = false
+		end
 	end
 	
 	function mc:stop()
 		active.isVisible = false
 		active = nil
-		animName = ""
+		animName = nil
 	end
-
+	
+	function mc:pause()
+		clips[animName]:stop()
+		paused = true
+	end
+	
+	function mc:isPaused()
+		return paused
+	end
+	
+	
 	function mc:currentAnimation()
 		return animName
 	end
