@@ -6,6 +6,7 @@ function new()
 	local clips = {}
 	local active = nil
 	animName = nil
+	timeWarp = 1
 	
 	function mc:newAnim (name,imageTable,width,height, speed)
 
@@ -15,7 +16,7 @@ function new()
 		local animLabels = {}
 		local limitX, limitY, transpose
 		local startX, startY
-		g.speed = speed
+		g.speed = speed * timeWarp
 		g.progress = speed
 
 		local i = 1
