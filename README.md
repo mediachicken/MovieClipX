@@ -39,12 +39,20 @@ MultiRezer download: http://project239.com/multirezer
 `myMCXObject:play("animation_name")`
 > Plays an animation in an mcx object
 
+`myMCXObject:pause()`
+> Pauses the current animation in an mcx object
+
+`myMCXObject:togglePause()`
+> Toggles between the playing/paused states
+
 `myMCXObject:stop()`
 > Stops an animation in an mcx object
 
 `myMCXObject:currentAnimation()`
 > Returns the name of the current animation
 
+`myMCXObject:isPaused()`
+> Returns a boolean with the current paused state
 
 ## Credits
 Garet McKinley (iGARET.com)
