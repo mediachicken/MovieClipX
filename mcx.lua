@@ -433,7 +433,7 @@ function new()
 	
 	function mc:play(name)
 		if name == nil and animName == nil then
-			print("Error, no animation name given and no animations can be resumed.")
+			print("Error, no animation name given and no animations to be resumed.")
 		else
 			if name == nil then
 				name = animName
@@ -460,6 +460,16 @@ function new()
 	
 	function mc:isPaused()
 		return paused
+	end
+	
+	function mc:togglePause()
+		if paused then
+			paused = false
+			mc:play()
+		else
+			paused = true
+			mc:pause()
+		end
 	end
 	
 	

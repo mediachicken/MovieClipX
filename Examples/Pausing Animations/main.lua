@@ -18,6 +18,9 @@ char:play("walk_right")
 
 function touchEvent(event)
 	if event.phase == "ended" then
+		-- you can now use char:togglePause() to toggle between play/pause
+		-- however, the method below shows both the use of play/pause and
+		-- using isPaused() to grab the current state.
 		if char:isPaused() then
 			char:play()
 		else
