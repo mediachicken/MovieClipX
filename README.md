@@ -5,6 +5,8 @@ MovieClipX (mcx) is a very slick library based off the original MovieClip librar
 * Animation speed control.
 * And more features coming soon.
 
+I'd recommend following the tutorial listed [here](http://igaret.com/tutorials/using-movieclipx-with-your-corona-sdk-projects/ "iGaret MovieClipX Tutorial") to learn the proper way to use MovieClipX.
+
 ## Basic Usage Tutorial
 1. Make sure your `config.lua` file has this tag in it:
 
