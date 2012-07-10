@@ -463,6 +463,15 @@ function new()
 		return paused
 	end
 	
+	function mc:isPlaying()
+		
+	end
+	
+	function mc:currentFrame()
+		
+	end
+	
+	
 	function mc:togglePause()
 		if paused then
 			paused = false
