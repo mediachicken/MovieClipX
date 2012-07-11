@@ -494,7 +494,6 @@ function new()
 		return clips[animName]:currentFrame()
 	end
 	
-	
 	function mcx:togglePause()
 		if paused then
 			paused = false

@@ -484,7 +484,10 @@ function new()
 	end
 	
 	function mcx:isPlaying()
-		
+		if paused == true then
+			return false
+		end
+		return true
 	end
 	
 	function mcx:currentFrame()
