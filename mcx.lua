@@ -488,7 +488,7 @@ function new()
 	end
 	
 	function mcx:currentFrame()
-		
+		return clips[animName]:currentFrame()
 	end
 	
 	

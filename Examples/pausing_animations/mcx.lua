@@ -488,7 +488,7 @@ function new()
 	end
 	
 	function mcx:currentFrame()
-		
+		return clips[animName]:currentFrame()
 	end
 	
 	
@@ -510,6 +510,10 @@ function new()
 	
 	function mcx:enableDebugging()
 		debug = true
+	end
+	
+	function mcx:disableDebugging()
+		debug = false
 	end
 		
 	return mcx
