@@ -43,6 +43,9 @@ MultiRezer download: http://project239.com/multirezer
 `myMCXObject:isPaused()`
 > Returns a boolean with the current paused state
 
+`myMCXObject:isPlaying()`
+> Returns a boolean with the current playing state
+
 `myMCXObject:enableDebugging()`
 > Enable terminal output for your mcx object
 
