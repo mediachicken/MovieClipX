@@ -511,6 +511,10 @@ function new()
 	function mcx:enableDebugging()
 		debug = true
 	end
+	
+	function mcx:disableDebugging()
+		debug = false
+	end
 		
 	return mcx
 end
