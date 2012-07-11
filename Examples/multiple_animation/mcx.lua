@@ -1,13 +1,24 @@
+-- @title MovieClipX
+-- @tagline A better way to animate.
+-- @author Garet McKinley (@iGaret)
+
+
 module(..., package.seeall)
 
+
+--- Creates a new MovieClipX container
+-- mxc containers are the core of the MovieClipX library.
+-- In order to do anything with the library, you first need
+-- a mcx container.
 function new()
 	
-	local mc = display.newGroup()
+	local mcx = display.newGroup()
 	local clips = {}
 	local active = nil
 	animName = nil
+	timeWarp = 1
 	
-	function mc:newAnim (name,imageTable,width,height, speed)
+	function mcx:newAnim (name,imageTable,width,height, speed)
 
 		-- Set up graphics
 		local g = display.newGroup()
@@ -15,7 +26,7 @@ function new()
 		local animLabels = {}
 		local limitX, limitY, transpose
 		local startX, startY
-		g.speed = speed
+		g.speed = speed * timeWarp
 		g.progress = speed
 
 		local i = 1
@@ -424,21 +435,21 @@ function new()
 		-- Return instance of anim
 		--return g
 		clips[name] = g
-		mc:insert(g)
+		mcx:insert(g)
 		active = g
 		animName = name
 		paused = false
 	end
 	
 	
-	function mc:play(name)
+	function mcx:play(name)
 		if name == nil and animName == nil then
 			print("Error, no animation name given and no animations to be resumed.")
 		else
 			if name == nil then
 				name = animName
 			end
-			mc:stop()
+			mcx:stop()
 			active = clips[name]
 			active.isVisible = true
 			clips[name]:play()
@@ -447,35 +458,44 @@ function new()
 		end
 	end
 	
-	function mc:stop()
+	function mcx:stop()
 		active.isVisible = false
 		active = nil
 		animName = nil
 	end
 	
-	function mc:pause()
+	function mcx:pause()
 		clips[animName]:stop()
 		paused = true
 	end
 	
-	function mc:isPaused()
+	function mcx:isPaused()
 		return paused
 	end
 	
-	function mc:togglePause()
+	function mcx:isPlaying()
+		
+	end
+	
+	function mcx:currentFrame()
+		
+	end
+	
+	
+	function mcx:togglePause()
 		if paused then
 			paused = false
-			mc:play()
+			mcx:play()
 		else
 			paused = true
-			mc:pause()
+			mcx:pause()
 		end
 	end
 	
 	
-	function mc:currentAnimation()
+	function mcx:currentAnimation()
 		return animName
 	end
 		
-	return mc
+	return mcx
 end
