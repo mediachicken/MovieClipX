@@ -1,6 +1,8 @@
 require("mcx")
 
 char = mcx.new()
+char:enableDebugging()
+
 char:newAnim("walk_left", {"walk_left_001.png",
 													"walk_left_002.png",
 													"walk_left_003.png",

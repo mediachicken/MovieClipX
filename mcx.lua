@@ -5,6 +5,7 @@
 
 module(..., package.seeall)
 
+	
 
 --- Creates a new MovieClipX container
 -- mxc containers are the core of the MovieClipX library.
@@ -17,6 +18,7 @@ function new()
 	local active = nil
 	animName = nil
 	timeWarp = 1
+	debug = false
 	
 	function mcx:newAnim (name,imageTable,width,height, speed)
 
@@ -218,6 +220,7 @@ function new()
 		-- Define public methods
 
 		function g:enterFrame( event )
+			--mcx:log(g.progress)
 			if (g.progress == 0) then
 				self:repeatFunction( event )
 				g.progress = g.speed
@@ -256,7 +259,7 @@ function new()
 					remove = false
 				end			
 			end
-		
+					
 			currentFrame = startFrame
 			animFrames[startFrame].isVisible = true 
 		
@@ -441,6 +444,11 @@ function new()
 		paused = false
 	end
 	
+	function mcx:log(msg)
+		if debug == true then
+			print("MCX_MSG: " .. msg)
+		end
+	end
 	
 	function mcx:play(name)
 		if name == nil and animName == nil then
@@ -449,16 +457,18 @@ function new()
 			if name == nil then
 				name = animName
 			end
+			mcx:log("Playing " .. name)
 			mcx:stop()
 			active = clips[name]
 			active.isVisible = true
-			clips[name]:play()
+			clips[name]:playAtFrame(1)
 			animName = name
 			paused = false
 		end
 	end
 	
 	function mcx:stop()
+		clips[animName]:stop()
 		active.isVisible = false
 		active = nil
 		animName = nil
@@ -495,6 +505,11 @@ function new()
 	
 	function mcx:currentAnimation()
 		return animName
+	end
+	
+	
+	function mcx:enableDebugging()
+		debug = true
 	end
 		
 	return mcx
