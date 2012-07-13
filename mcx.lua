@@ -16,9 +16,10 @@ function new()
 	local mcx = display.newGroup()
 	local clips = {}
 	local active = nil
-	animName = nil
-	timeWarp = 1
-	debug = false
+	local animName = nil
+	local timeWarp = 1
+	local debug = false
+	local paused = false
 	
 	function mcx:newAnim (name,imageTable,width,height, speed)
 
@@ -439,7 +440,6 @@ function new()
 		mcx:insert(g)
 		active = g
 		animName = name
-		paused = false
 	end
 	
 	function mcx:log(msg)

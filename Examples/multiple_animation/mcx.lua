@@ -16,9 +16,10 @@ function new()
 	local mcx = display.newGroup()
 	local clips = {}
 	local active = nil
-	animName = nil
-	timeWarp = 1
-	debug = false
+	local animName = nil
+	local timeWarp = 1
+	local debug = false
+	local paused = false
 	
 	function mcx:newAnim (name,imageTable,width,height, speed)
 
@@ -435,13 +436,10 @@ function new()
 			end		
 		end
 	
-		-- Return instance of anim
-		--return g
 		clips[name] = g
 		mcx:insert(g)
 		active = g
 		animName = name
-		paused = false
 	end
 	
 	function mcx:log(msg)
@@ -494,7 +492,6 @@ function new()
 		return clips[animName]:currentFrame()
 	end
 	
-	
 	function mcx:togglePause()
 		if paused then
 			paused = false
@@ -505,11 +502,9 @@ function new()
 		end
 	end
 	
-	
 	function mcx:currentAnimation()
 		return animName
 	end
-	
 	
 	function mcx:enableDebugging()
 		debug = true

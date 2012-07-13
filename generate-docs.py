@@ -11,6 +11,9 @@ for line in config.readlines():
 	exec(line)
 	
 luaFile = open(luaFile, "r")
+lines = []
 
+# first let's strip all the garbage 
 for line in luaFile.readlines():
-	print(line)
+	lines.append(line.replace("\t", "").replace("\n", ""))
+	
