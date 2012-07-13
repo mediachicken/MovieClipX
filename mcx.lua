@@ -435,8 +435,6 @@ function new()
 			end		
 		end
 	
-		-- Return instance of anim
-		--return g
 		clips[name] = g
 		mcx:insert(g)
 		active = g
@@ -504,11 +502,9 @@ function new()
 		end
 	end
 	
-	
 	function mcx:currentAnimation()
 		return animName
 	end
-	
 	
 	function mcx:enableDebugging()
 		debug = true
