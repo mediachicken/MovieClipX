@@ -448,7 +448,7 @@ function new()
 		end
 	end
 	
-	function mcx:play(name)
+	function mcx:play(name, params)
 		if name == nil and animName == nil then
 			print("Error, no animation name given and no animations to be resumed.")
 		else
@@ -459,7 +459,13 @@ function new()
 			mcx:stop()
 			active = clips[name]
 			active.isVisible = true
-			clips[name]:playAtFrame(1)
+			
+			if ( params ) then
+					clips[name]:play(params)
+			else
+				clips[name]:playAtFrame(1)
+			end
+			
 			animName = name
 			paused = false
 		end
