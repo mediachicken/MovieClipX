@@ -22,8 +22,8 @@ MultiRezer download: http://project239.com/multirezer
 `myMCXObject:newAnim(newAnim("animation_name", {frames}, width, height, speed)`
 > Creates a new animation in an mcx object
 
-`myMCXObject:play("animation_name")`
-> Plays an animation in an mcx object
+`myMCXObject:play("animation_name"[, params])`
+> Plays an animation in an mcx object. You can use the secon argument (optional) to specify parameters. These are the same parameters as in the original movieclip library.
 
 `myMCXObject:pause()`
 > Pauses the current animation in an mcx object
