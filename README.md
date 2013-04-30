@@ -6,7 +6,6 @@ MovieClipX (mcx) is a very slick library based off the original MovieClip librar
 * And more features coming soon.
 
 
-
 ## Usage Tutorial
 __I'd recommend following the tutorial listed [here](http://igaret.com/tutorials/using-movieclipx-with-your-corona-sdk-projects/ "iGaret MovieClipX Tutorial") to learn the proper way to use MovieClipX.__
 
