@@ -21,7 +21,7 @@ function new()
 	local debug = false
 	local paused = false
 	
-	function mcx:newAnim (name,imageTable,width,height, speed)
+	function mcx:newAnim (name,imageTable,width,height, speed, loops)
 
 		-- Set up graphics
 		local g = display.newGroup()
@@ -31,6 +31,7 @@ function new()
 		local startX, startY
 		g.speed = speed * timeWarp
 		g.progress = speed
+		g.loops = loops
 
 		local i = 1
 		while imageTable[i] do
@@ -51,7 +52,7 @@ function new()
 		local totalFrames = #animFrames
 		local startFrame = 1
 		local endFrame = #animFrames
-		local loop = 0
+		local loop = g.loops
 		local loopCount = 0
 		local remove = false
 		local dragBounds = nil
@@ -232,7 +233,6 @@ function new()
 
 		function g:play(params )
 			Runtime:removeEventListener( "enterFrame", self )
-
 			if ( params ) then
 				-- if any parameters are submitted, assume this is a new sequence and reset all default values
 				animFrames[currentFrame].isVisible = false
@@ -252,10 +252,11 @@ function new()
 				loopCount = 0
 			else
 				if (not inSequence) then
+					animFrames[currentFrame].isVisible = false
 					-- use default values
 					startFrame = 1
 					endFrame = #animFrames
-					loop = 0
+					loop = g.loops
 					loopCount = 0
 					remove = false
 				end			
@@ -461,9 +462,10 @@ function new()
 			active.isVisible = true
 			
 			if ( params ) then
+					print(clips)
 					clips[name]:play(params)
 			else
-				clips[name]:playAtFrame(1)
+				clips[name]:play()
 			end
 			
 			animName = name
@@ -492,6 +494,10 @@ function new()
 			return false
 		end
 		return true
+	end
+
+	function mcx:setLoops(name, loops)
+		clips[name].loop = loops
 	end
 	
 	function mcx:currentFrame()

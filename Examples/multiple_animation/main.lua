@@ -6,23 +6,23 @@ char:enableDebugging()
 char:newAnim("walk_left", {"walk_left_001.png",
 													"walk_left_002.png",
 													"walk_left_003.png",
-													"walk_left_004.png"}, 96, 96, 5)
+													"walk_left_004.png"}, 48, 48, 5, 0)
 
 char:newAnim("walk_right", {"walk_right_001.png",
 													"walk_right_002.png",
 													"walk_right_003.png",
-													"walk_right_004.png"}, 96, 96, 5)
+													"walk_right_004.png"}, 48, 48, 5, 0)
 													
 char:newAnim("walk_up", {"walk_up_001.png",
 													"walk_up_002.png",
 													"walk_up_003.png",
-													"walk_up_004.png"}, 96, 96, 5)
+													"walk_up_004.png"}, 48, 48, 5, 0)
 													
 
 char:newAnim("walk_down", {"walk_down_001.png",
 													"walk_down_002.png",
 													"walk_down_003.png",
-													"walk_down_004.png"}, 96, 96, 5)												
+													"walk_down_004.png"}, 48, 48, 5, 0)												
 
 char.x = display.contentWidth / 2
 char.y = display.contentHeight / 2
