@@ -22,6 +22,7 @@ function touchEvent(event)
 		-- however, the method below shows both the use of play/pause and
 		-- using isPaused() to grab the current state.
 		if char:isPaused() then
+			char:setLoops("walk_right", 5)
 			char:play()
 		else
 			char:pause()

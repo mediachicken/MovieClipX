@@ -91,7 +91,7 @@ function new()
 						currentFrame = currentFrame - 1
 						animFrames[currentFrame].isVisible = true
 						Runtime:removeEventListener( "enterFrame", self )
-
+						paused = true
 						if (remove) then
 							-- delete self (only gets garbage collected if there are no other references)
 							self.parent:remove(self)
@@ -497,7 +497,7 @@ function new()
 	end
 
 	function mcx:setLoops(name, loops)
-		clips[name].loop = loops
+		clips[name].loops = loops
 	end
 	
 	function mcx:currentFrame()
