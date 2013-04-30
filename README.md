@@ -34,6 +34,9 @@ MultiRezer download: http://project239.com/multirezer
 `myMCXObject:stop()`
 > Stops an animation in an mcx object
 
+`myMCXObject:setLoops("animation_name", loops)`
+> Sets the amount of times an animation will loop
+
 `myMCXObject:currentAnimation()`
 > Returns the name of the current animation
 
