@@ -17,4 +17,16 @@ for folder in examples:
 	
 
 #uncomment the lines below when using the prototype/ folder for development
-shutil.copyfile(library, "mcx.lua")
+f = open('config','r')
+build = f.read()
+f.close()
+
+build = int(build)+1
+build = str(build)
+
+
+f = open('config','w')
+f.write(build)
+f.close()
+
+print(build)

@@ -16,6 +16,9 @@ function halfSpeed()
 	return 0.5
 end
 
+function doubleSpeed()
+	return 2.0
+end
 
 
 --- Creates a new MovieClipX container
@@ -511,6 +514,7 @@ function new()
 			animName = name
 			paused = false
 		end
+		print(clips)
 	end
 	
 	function mcx:stop()
