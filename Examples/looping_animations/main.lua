@@ -1,7 +1,8 @@
 require("mcx")
 
 char = mcx.new()
-
+-- enable debugging
+char:enableDebugging()
 
 char:newAnim("walk_right", {"walk_right_001.png",
 													"walk_right_002.png",
@@ -22,6 +23,8 @@ function touchEvent(event)
 		-- however, the method below shows both the use of play/pause and
 		-- using isPaused() to grab the current state.
 		if char:isPaused() then
+			-- set the number of times to loop the animation
+			-- you can also set this parameter inside the play() function
 			char:setLoops("walk_right", 5)
 			char:play()
 		else

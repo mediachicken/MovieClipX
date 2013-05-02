@@ -1,6 +1,7 @@
 require("mcx")
 
 char = mcx.new()
+-- enable debugging
 char:enableDebugging()
 
 char:newAnim("walk_left", {"walk_left_001.png",
@@ -33,13 +34,13 @@ char:play("walk_left")
 function touchEvent(event)
 	if event.phase == "ended" then
 		if char:currentAnimation() == "walk_down" then
-			char:play("walk_left")
+			char:play({name = "walk_left"})
 		elseif char:currentAnimation() == "walk_left" then
-			char:play("walk_right")
+			char:play({name = "walk_right"})
 		elseif char:currentAnimation() == "walk_right" then
-			char:play("walk_up")
+			char:play({name = "walk_up"})
 		else
-			char:play("walk_down")
+			char:play({name = "walk_down"})
 		end
 	end
 end

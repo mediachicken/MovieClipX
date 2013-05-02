@@ -1,7 +1,8 @@
 require("mcx")
 
 char = mcx.new()
-
+-- enable debugging
+char:enableDebugging()
 
 char:newAnim("walk_right", {"walk_right_001.png",
 													"walk_right_002.png",

@@ -7,6 +7,17 @@ module(..., package.seeall)
 
 	
 
+
+function normalSpeed()
+	return 1.0
+end
+
+function halfSpeed()
+	return 0.5
+end
+
+
+
 --- Creates a new MovieClipX container
 -- mxc containers are the core of the MovieClipX library.
 -- In order to do anything with the library, you first need
@@ -92,6 +103,8 @@ function new()
 						animFrames[currentFrame].isVisible = true
 						Runtime:removeEventListener( "enterFrame", self )
 						paused = true
+						g.aspeed = nil
+						mcx:log("Finished " .. animName)
 						if (remove) then
 							-- delete self (only gets garbage collected if there are no other references)
 							self.parent:remove(self)
@@ -225,7 +238,11 @@ function new()
 			--mcx:log(g.progress)
 			if (g.progress == 0) then
 				self:repeatFunction( event )
-				g.progress = g.speed
+				if (g.aspeed == nil) then
+					g.progress = g.speed
+				else
+					g.progress = g.speed/g.aspeed
+				end
 			else
 				g.progress = g.progress - 1
 			end
@@ -249,7 +266,13 @@ function new()
 				if ( loop < 0 ) then loop = 0 end
 			
 				if ( params.remove and type(params.remove) == "boolean" ) then remove=params.remove end
+				if params.loops == nil then
+					loop = g.loops
+				else
+					loop = params.loops
+				end
 				loopCount = 0
+				g.aspeed = params.speed
 			else
 				if (not inSequence) then
 					animFrames[currentFrame].isVisible = false
@@ -449,24 +472,41 @@ function new()
 		end
 	end
 	
-	function mcx:play(name, params)
-		if name == nil and animName == nil then
-			print("Error, no animation name given and no animations to be resumed.")
-		else
-			if name == nil then
+	function mcx:play(params)
+		if params ~= nil then
+			if params.name == nil then
 				name = animName
+			else
+				name = params.name
 			end
+			if params.speed == nil then
+				speed = normalSpeed()
+			else
+				speed = params.speed
+			end
+			if params.loops == nil then
+				loops = clips[name].loops
+			else
+				loops = params.loops
+			end
+		else
+			name = animName
+			speed = normalSpeed()
+			loops = clips[name].loops
+		end
+		if name == nil and animName == nil then
+			mcx:log("Error, no animation name given and no animations to be resumed.")
+		else
+
+
 			mcx:log("Playing " .. name)
 			mcx:stop()
 			active = clips[name]
 			active.isVisible = true
 			
-			if ( params ) then
-					print(clips)
-					clips[name]:play(params)
-			else
-				clips[name]:play()
-			end
+
+			clips[name]:play({speed = speed, loops = loops})
+
 			
 			animName = name
 			paused = false
@@ -483,6 +523,7 @@ function new()
 	function mcx:pause()
 		clips[animName]:stop()
 		paused = true
+		mcx:log("Paused " .. animName)
 	end
 	
 	function mcx:isPaused()
