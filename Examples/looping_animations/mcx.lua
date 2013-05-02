@@ -1,7 +1,7 @@
 -- @title MovieClipX
 -- @tagline A better way to animate.
 -- @author Garet McKinley (@iGaret)
-build = 201
+build = 202
 
 module(..., package.seeall)
 
