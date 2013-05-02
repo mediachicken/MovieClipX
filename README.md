@@ -62,6 +62,9 @@ MultiRezer download: http://project239.com/multirezer
 `mcx.halfSpeed()`
 > Returns the value to play the animation at half speed
 
+`mcx.halfSpeed()`
+> Returns the value to play the animation at double speed
+
 ## Credits
 Garet McKinley (iGARET.com)
 
