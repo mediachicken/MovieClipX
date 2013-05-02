@@ -23,8 +23,8 @@ MultiRezer download: http://project239.com/multirezer
 `myMCXObject:newAnim(newAnim("animation_name", {frames}, width, height, speed, loops)`
 > Creates a new animation in an mcx object
 
-`myMCXObject:play("animation_name"[, params])`
-> Plays an animation in an mcx object. You can use the secon argument (optional) to specify parameters. These are the same parameters as in the original movieclip library.
+`myMCXObject:play({name = string, speed = float, loops = int})`
+> Plays an animation in an mcx object with the parameters given
 
 `myMCXObject:pause()`
 > Pauses the current animation in an mcx object
@@ -55,6 +55,12 @@ MultiRezer download: http://project239.com/multirezer
 
 `myMCXObject:disableDebugging()`
 > Disable terminal output for your mcx object
+
+`mcx.normalSpeed()`
+> Returns the value to play the animation at normal speed
+
+`mcx.halfSpeed()`
+> Returns the value to play the animation at half speed
 
 ## Credits
 Garet McKinley (iGARET.com)
