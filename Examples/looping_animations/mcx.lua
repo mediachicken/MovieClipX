@@ -1,11 +1,20 @@
 -- @title MovieClipX
 -- @tagline A better way to animate.
 -- @author Garet McKinley (@iGaret)
-
+build = 201
 
 module(..., package.seeall)
 
-	
+env = system.getInfo("environment")
+
+if (env == "simulator") then
+	local function networkListener( event )
+		if (build < tonumber(event.response)) then
+			print("You are running an old version of MCX!")
+		end
+	end
+	network.request( "https://raw.github.com/iGARET/MovieClipX/master/config", "GET", networkListener)
+end
 
 
 function normalSpeed()
@@ -514,7 +523,6 @@ function new()
 			animName = name
 			paused = false
 		end
-		print(clips)
 	end
 	
 	function mcx:stop()

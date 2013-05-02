@@ -8,13 +8,6 @@ import os, shutil
 
 library = "prototype/mcx.lua"
 
-for path, subdirs, files in os.walk("examples"):
-	if len(subdirs) > 0:
-		examples = subdirs
-		
-for folder in examples:
-	shutil.copyfile(library, "examples/" + folder + "/mcx.lua")
-	
 
 #uncomment the lines below when using the prototype/ folder for development
 f = open('config','r')
@@ -29,4 +22,20 @@ f = open('config','w')
 f.write(build)
 f.close()
 
-print(build)
+f = open(library,'r')
+lua = f.readlines()
+f.close()
+
+lua[3] = "build = " + build + "\n"
+
+f = open(library,'w')
+f.writelines(lua)
+f.close()
+
+
+for path, subdirs, files in os.walk("examples"):
+	if len(subdirs) > 0:
+		examples = subdirs
+		
+for folder in examples:
+	shutil.copyfile(library, "examples/" + folder + "/mcx.lua")
