@@ -1,7 +1,7 @@
 -- @title MovieClipX
 -- @tagline A better way to animate.
 -- @author Garet McKinley (@iGaret)
-build = 212
+build = 213
 
 module(..., package.seeall)
 
@@ -37,6 +37,38 @@ end
 
 function backward()
 	return "backward"
+end
+
+function sequence(params)
+	if (params) then
+		if (params.name == nil) then
+			print("MCX SEQUENCE ERROR: Missing name")
+		end
+		if (params.extension == nil) then
+			print("MCX SEQUENCE ERROR: Missing extension")
+		end
+		if (params.endFrame == nil) then
+			print("MCX SEQUENCE ERROR: Missing endFrame")
+		end
+		if (params.name ~= nil and params.extension ~= nil and params.endFrame ~= nil) then
+			if (params.startFrame == nil) then
+				params.startFrame = 1
+			end
+			if (params.zeros == nil) then
+				params.zeros = 0
+			end
+
+			tmpTable = {}
+			for i = params.startFrame, params.endFrame do
+				count = string.format("%0" .. params.zeros .. "d", i)
+				table.insert( tmpTable, params.name .. count .. "." .. params.extension )
+			end
+			return tmpTable
+		end
+	else
+		print("MCX SEQUENCE ERROR: Missing name, extension, and endFrame")
+	end
+	return false
 end
 
 --- Creates a new MovieClipX container
