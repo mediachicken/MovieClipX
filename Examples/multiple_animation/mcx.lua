@@ -1,7 +1,7 @@
 -- @title MovieClipX
 -- @tagline A better way to animate.
 -- @author Garet McKinley (@iGaret)
-build = 203
+build = 208
 
 module(..., package.seeall)
 
@@ -30,13 +30,19 @@ function doubleSpeed()
 	return 2.0
 end
 
+function forward()
+	return "forward"
+end
+
+function backward()
+	return "backward"
+end
 
 --- Creates a new MovieClipX container
 -- mxc containers are the core of the MovieClipX library.
 -- In order to do anything with the library, you first need
 -- a mcx container.
 function new()
-	
 	local mcx = display.newGroup()
 	local clips = {}
 	local active = nil
@@ -45,7 +51,10 @@ function new()
 	local debug = false
 	local paused = false
 	
-	function mcx:newAnim (name,imageTable,width,height, speed, loops)
+	function mcx:newAnim (name,imageTable, width, height, params)
+		
+
+
 
 		-- Set up graphics
 		local g = display.newGroup()
@@ -53,9 +62,16 @@ function new()
 		local animLabels = {}
 		local limitX, limitY, transpose
 		local startX, startY
-		g.speed = speed * timeWarp
-		g.progress = speed
-		g.loops = loops
+		if (params ~= nil) then
+			g.speed = params.speed * timeWarp
+			g.loops = params.loops
+			g.progress = 0
+		else
+			print("DEFAULTS")
+			g.speed = 5
+			g.loops = 0
+			g.progress = 0
+		end
 
 		local i = 1
 		while imageTable[i] do
@@ -84,7 +100,7 @@ function new()
 	
 		-- flag to distinguish initial default case (where no sequence parameters are submitted)
 		local inSequence = false
-	
+
 		local function resetDefaults()
 			currentFrame = 1
 			startFrame = 1
@@ -252,16 +268,18 @@ function new()
 			if (g.progress == 0) then
 				self:repeatFunction( event )
 				if (g.aspeed == nil) then
+					--print(g.speed)
 					g.progress = g.speed
 				else
 					g.progress = g.speed/g.aspeed
 				end
 			else
+				--print("waiting")
 				g.progress = g.progress - 1
 			end
 		end
 
-		function g:play(params )
+		function g:play(params)
 			Runtime:removeEventListener( "enterFrame", self )
 			if ( params ) then
 				-- if any parameters are submitted, assume this is a new sequence and reset all default values
@@ -285,7 +303,9 @@ function new()
 					loop = params.loops
 				end
 				loopCount = 0
-				g.aspeed = params.speed
+				if (params.speed ~= nil) then
+					g.aspeed = params.speed
+				end
 			else
 				if (not inSequence) then
 					animFrames[currentFrame].isVisible = false

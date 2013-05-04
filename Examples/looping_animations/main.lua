@@ -7,7 +7,7 @@ char:enableDebugging()
 char:newAnim("walk_right", {"walk_right_001.png",
 													"walk_right_002.png",
 													"walk_right_003.png",
-													"walk_right_004.png"}, 48, 48, 5, 2)
+													"walk_right_004.png"}, 48, 48, {speed = 5, loops = 2})
 													
 
 
