@@ -1,13 +1,14 @@
 -- @title MovieClipX
 -- @tagline A better way to animate.
 -- @author Garet McKinley (@iGaret)
-build = 211
+build = 212
 
 module(..., package.seeall)
 
 env = system.getInfo("environment")
 
 if (env == "simulator") then
+	print("MovieClipX v2013." .. build)
 	local function networkListener( event )
 		if (build < tonumber(event.response)) then
 			print("Warning: You are running an old version of MCX!")
