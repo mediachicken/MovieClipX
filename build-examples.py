@@ -39,3 +39,5 @@ for path, subdirs, files in os.walk("examples"):
 		
 for folder in examples:
 	shutil.copyfile(library, "examples/" + folder + "/mcx.lua")
+
+shutil.copyfile(library, "./mcx.lua")
