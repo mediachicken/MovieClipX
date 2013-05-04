@@ -65,6 +65,9 @@ MultiRezer download: http://project239.com/multirezer
 `mcx.halfSpeed()`
 > Returns the value to play the animation at double speed
 
+`mcx.sequence({name = string, extension = string, startFrame = int, endFrame = int, zeros = int})`
+> Creates a table for an image sequence
+
 ## Credits
 Garet McKinley (iGARET.com)
 
