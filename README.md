@@ -20,7 +20,7 @@ MultiRezer download: http://project239.com/multirezer
 `mcx.new()`
 > Creates a new mcx object
 
-`myMCXObject:newAnim(newAnim("animation_name", {frames}, width, height, speed, loops)`
+`myMCXObject:newAnim(newAnim("animation_name", {frames}, width, height, {speed = int, loops = int})`
 > Creates a new animation in an mcx object
 
 `myMCXObject:play({name = string, speed = float, loops = int})`
