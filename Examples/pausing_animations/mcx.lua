@@ -1,7 +1,7 @@
 -- @title MovieClipX
 -- @tagline A better way to animate.
 -- @author Garet McKinley (@iGaret)
-build = 208
+build = 209
 
 module(..., package.seeall)
 
@@ -67,7 +67,6 @@ function new()
 			g.loops = params.loops
 			g.progress = 0
 		else
-			print("DEFAULTS")
 			g.speed = 5
 			g.loops = 0
 			g.progress = 0
