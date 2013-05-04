@@ -18,55 +18,55 @@ MultiRezer download: http://project239.com/multirezer
 
 ## Functions
 `mcx.new()`
-Creates a new mcx object
+> Creates a new mcx object
 
 `myMCXObject:newAnim(newAnim("animation_name", {frames}, width, height, {speed = int, loops = int})`
-Creates a new animation in an mcx object
+> Creates a new animation in an mcx object
 
 `myMCXObject:play({name = string, speed = float, loops = int})`
-Plays an animation in an mcx object with the parameters given
+> Plays an animation in an mcx object with the parameters given
 
 `myMCXObject:pause()`
-Pauses the current animation in an mcx object
+> Pauses the current animation in an mcx object
 
 `myMCXObject:togglePause()`
-Toggles between the playing/paused states
+> Toggles between the playing/paused states
 
 `myMCXObject:stop()`
-Stops an animation in an mcx object
+> Stops an animation in an mcx object
 
 `myMCXObject:setLoops("animation_name", loops)`
-Sets the amount of times an animation will loop
+> Sets the amount of times an animation will loop
 
 `myMCXObject:currentAnimation()`
-Returns the name of the current animation
+> Returns the name of the current animation
 
 `myMCXObject:currentFrame()`
-Returns the number of the current frame
+> Returns the number of the current frame
 
 `myMCXObject:isPaused()`
-Returns a boolean with the current paused state
+> Returns a boolean with the current paused state
 
 `myMCXObject:isPlaying()`
-Returns a boolean with the current playing state
+> Returns a boolean with the current playing state
 
 `myMCXObject:enableDebugging()`
-Enable terminal output for your mcx object
+> Enable terminal output for your mcx object
 
 `myMCXObject:disableDebugging()`
-Disable terminal output for your mcx object
+> Disable terminal output for your mcx object
 
 `mcx.normalSpeed()`
-Returns the value to play the animation at normal speed
+> Returns the value to play the animation at normal speed
 
 `mcx.halfSpeed()`
-Returns the value to play the animation at half speed
+> Returns the value to play the animation at half speed
 
 `mcx.halfSpeed()`
-Returns the value to play the animation at double speed
+> Returns the value to play the animation at double speed
 
 `mcx.sequence({name = string, extension = string, startFrame = int, endFrame = int, zeros = int})`
-Creates a table for an image sequence
+> Creates a table for an image sequence
 
 ## Credits
 Garet McKinley (iGARET.com)
