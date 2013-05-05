@@ -7,6 +7,9 @@ MovieClipX (mcx) is a very slick library based off the original MovieClip librar
 * Animation speed control.
 * And more features coming soon.
 
+## NEW in build 2013.215, Timeline functions!
+Use `mcx.newTimeline()` to create a new timeline object! You can then add mcx objects into the timeline by using `timeline:addObject(mcxObject)` to manipulate groups of animations at once! Great for pausing every animation or activating a global "slow-mo" mode!
+
 
 ## Usage Tutorial
 __I'd recommend following the tutorial listed [here](http://igaret.com/tutorials/using-movieclipx-with-your-corona-sdk-projects/ "iGaret MovieClipX Tutorial") to learn the proper way to use MovieClipX.__
@@ -16,46 +19,16 @@ __Extra tip: to automatically scale down your graphics for older phones use my u
 MultiRezer download: http://project239.com/multirezer
 
 
-## Functions
+## Documentation
+
+### Objects
 `mcx.new()`
-> Creates a new mcx object
+> Creates a new mcxObject
 
-`myMCXObject:newAnim(newAnim("animation_name", {frames}, width, height, {speed = int, loops = int})`
-> Creates a new animation in an mcx object
+`mcx.newTimeline()`
+> Creates a new timelineObject
 
-`myMCXObject:play({name = string, speed = float, loops = int})`
-> Plays an animation in an mcx object with the parameters given
-
-`myMCXObject:pause()`
-> Pauses the current animation in an mcx object
-
-`myMCXObject:togglePause()`
-> Toggles between the playing/paused states
-
-`myMCXObject:stop()`
-> Stops an animation in an mcx object
-
-`myMCXObject:setLoops("animation_name", loops)`
-> Sets the amount of times an animation will loop
-
-`myMCXObject:currentAnimation()`
-> Returns the name of the current animation
-
-`myMCXObject:currentFrame()`
-> Returns the number of the current frame
-
-`myMCXObject:isPaused()`
-> Returns a boolean with the current paused state
-
-`myMCXObject:isPlaying()`
-> Returns a boolean with the current playing state
-
-`myMCXObject:enableDebugging()`
-> Enable terminal output for your mcx object
-
-`myMCXObject:disableDebugging()`
-> Disable terminal output for your mcx object
-
+### Core functions
 `mcx.normalSpeed()`
 > Returns the value to play the animation at normal speed
 
@@ -67,6 +40,68 @@ MultiRezer download: http://project239.com/multirezer
 
 `mcx.sequence({name = string, extension = string, startFrame = int, endFrame = int, zeros = int})`
 > Creates a table for an image sequence
+
+### mcxObject functions
+`mcxObject:newAnim(newAnim("animation_name", {frames}, width, height, {speed = int, loops = int})`
+> Creates a new animation in an mcx object
+
+`mcxObject:play({name = string, speed = float, loops = int})`
+> Plays an animation in an mcx object with the parameters given
+
+`mcxObject:pause()`
+> Pauses the current animation in an mcx object
+
+`mcxObject:togglePause()`
+> Toggles between the playing/paused states
+
+`mcxObject:stop()`
+> Stops an animation in an mcx object
+
+`mcxObject:setLoops("animation_name", loops)`
+> Sets the amount of times an animation will loop
+
+`mcxObject:setSpeed("animation_name", speed)`
+> Sets the speed for the specified animation
+
+`mcxObject:currentAnimation()`
+> Returns the name of the current animation
+
+`mcxObject:currentFrame()`
+> Returns the number of the current frame
+
+`mcxObject:isPaused()`
+> Returns a boolean with the current paused state
+
+`mcxObject:isPlaying()`
+> Returns a boolean with the current playing state
+
+`mcxObject:enableDebugging()`
+> Enable terminal output for your mcx object
+
+`mcxObject:disableDebugging()`
+> Disable terminal output for your mcx object
+
+### Timeline functions
+`timelineObject:addObject(mcxObject)`
+> Adds an mcxObject to the timeline
+
+`timelineObject:play()`
+> Play the timeline
+
+`timelineObject:pause()`
+> Pause the timeline
+
+`timelineObject:stop()`
+> Stop the timeline
+
+`timelineObject:togglePause`
+> Toggles between playing/paused states
+
+`timelineObject:alterTime(speed)`
+> Alters the speed of the timeline
+
+`timelineObject:getSpeed()`
+> Returns the current speed
 
 ## Credits
 Garet McKinley (iGARET.com)

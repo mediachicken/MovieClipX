@@ -1,7 +1,7 @@
 -- @title MovieClipX
 -- @tagline A better way to animate.
 -- @author Garet McKinley (@iGaret)
-build = 213
+build = 215
 
 module(..., package.seeall)
 
@@ -69,6 +69,65 @@ function sequence(params)
 		print("MCX SEQUENCE ERROR: Missing name, extension, and endFrame")
 	end
 	return false
+end
+
+
+function newTimeline()
+	local tl = display.newGroup()
+	local objects = {}
+	local paused = false
+	tl.speed = 1.0
+	
+	function tl:addObject(object)
+		tl:insert(object)
+	end
+	
+
+	function tl:play()
+		for i = 1,tl.numChildren do
+			tl[i]:play()
+		end
+	end
+	
+	function tl:pause()
+		for i = 1,tl.numChildren do
+			tl[i]:pause()
+		end
+	end
+	
+	function tl:stop()
+		for i = 1,tl.numChildren do
+			tl[i]:stop()
+		end
+	end
+	
+	function tl:togglePause()
+		if paused then
+			for i = 1,tl.numChildren do
+				tl[i]:play()
+				paused = false
+			end
+		else
+			for i = 1,tl.numChildren do
+				tl[i]:pause()
+				paused = true
+			end
+		end
+	end
+	
+	function tl:alterTime(speed)
+		for i = 1,tl.numChildren do
+			tl[i]:setSpeed(tl[i]:currentAnimation(), speed)
+			tl.speed = speed 
+		end
+	end
+	
+	function tl:getSpeed()
+		return tl.speed
+	end
+	
+	-- return the timeline object
+	return tl
 end
 
 --- Creates a new MovieClipX container
@@ -604,6 +663,10 @@ function new()
 
 	function mcx:setLoops(name, loops)
 		clips[name].loops = loops
+	end
+	
+	function mcx:setSpeed(name, speed)
+		clips[name].aspeed = speed
 	end
 	
 	function mcx:currentFrame()
