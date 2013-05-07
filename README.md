@@ -107,6 +107,6 @@ MultiRezer download: http://project239.com/multirezer
 Garet McKinley (iGARET.com)
 
 ## Not satisfied?
-If you've found a problem or want to make a suggestion please by all means, do so! I love to hear feedback! It's what makes it grow with features that people really need.
+# [Go to the issue tracker →](https://github.com/iGARET/MovieClipX/issues)
 
 ### Thanks for using the MovieClipX library!
