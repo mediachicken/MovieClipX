@@ -12,8 +12,8 @@ Use `mcx.newTimeline()` to create a new timeline object! You can then add mcx ob
 
 
 ## Usage Tutorials
-###[Beginner Tutorial →](http://igaret.com/tutorials/using-movieclipx-with-your-corona-sdk-projects/ "iGaret MovieClipX Tutorial")
-###[Using Timelines →](http://igaret.com/tutorials/using-timelines-in-corona-sdk-movieclipx "Using Timelines in Corona SDK")
+##[Beginner Tutorial →](http://igaret.com/tutorials/using-movieclipx-with-your-corona-sdk-projects/ "iGaret MovieClipX Tutorial")
+##[NEW! Using Timelines →](http://igaret.com/tutorials/using-timelines-in-corona-sdk-movieclipx "Using Timelines in Corona SDK")
 
 __Extra tip: to automatically scale down your graphics for older phones use my utility MultiRezer instead of doing your sprites one by one!__
 MultiRezer download: http://project239.com/multirezer
