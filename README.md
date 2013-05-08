@@ -9,7 +9,7 @@ MovieClipX (mcx) is a very slick library based off the original MovieClip librar
 
 ## NEW in build 2013.215, Timeline functions!
 Use `mcx.newTimeline()` to create a new timeline object! You can then add mcx objects into the timeline by using `timeline:addObject(mcxObject)` to manipulate groups of animations at once! Great for pausing every animation or activating a global "slow-mo" mode!
-
+[Click here](http://igaret.com/tutorials/using-timelines-in-corona-sdk-movieclipx "Using Timelines in Corona SDK") for a tutorial on using timelines!
 
 ## Usage Tutorial
 __I'd recommend following the tutorial listed [here](http://igaret.com/tutorials/using-movieclipx-with-your-corona-sdk-projects/ "iGaret MovieClipX Tutorial") to learn the proper way to use MovieClipX.__
@@ -107,6 +107,6 @@ MultiRezer download: http://project239.com/multirezer
 Garet McKinley (iGARET.com)
 
 ## Not satisfied?
-# [Go to the issue tracker →](https://github.com/iGARET/MovieClipX/issues)
+### [Go to the issue tracker →](https://github.com/iGARET/MovieClipX/issues)
 
 ### Thanks for using the MovieClipX library!
