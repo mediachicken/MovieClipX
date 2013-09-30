@@ -1,7 +1,7 @@
 -- @title MovieClipX
 -- @tagline A better way to animate.
 -- @author Garet McKinley (@iGaret)
-build = 215
+build = 216
 
 module(..., package.seeall)
 
@@ -115,10 +115,13 @@ function newTimeline()
 		end
 	end
 	
-	function tl:alterTime(speed)
+	function tl:alterTime(speed, direction)
 		for i = 1,tl.numChildren do
 			tl[i]:setSpeed(tl[i]:currentAnimation(), speed)
 			tl.speed = speed 
+			if direction then
+				tl[i]:setDirection(direction)
+			end
 		end
 	end
 	
@@ -145,9 +148,6 @@ function new()
 	
 	function mcx:newAnim (name,imageTable, width, height, params)
 		
-
-
-
 		-- Set up graphics
 		local g = display.newGroup()
 		local animFrames = {}
@@ -163,6 +163,7 @@ function new()
 			g.loops = 0
 			g.progress = 0
 		end
+		g.direction = forward()
 
 		local i = 1
 		while imageTable[i] do
@@ -186,8 +187,6 @@ function new()
 		local loop = g.loops
 		local loopCount = 0
 		local remove = false
-		local dragBounds = nil
-		local dragLeft, dragTop, dragWidth, dragHeight
 	
 		-- flag to distinguish initial default case (where no sequence parameters are submitted)
 		local inSequence = false
@@ -216,7 +215,6 @@ function new()
 			if (currentFrame == endFrame + 1) then
 				if (loop > 0) then
 					loopCount = loopCount + 1
-
 					if (loopCount == loop) then
 						-- stop looping
 						currentFrame = currentFrame - 1
@@ -229,7 +227,6 @@ function new()
 							-- delete self (only gets garbage collected if there are no other references)
 							self.parent:remove(self)
 						end
-
 					else
 						currentFrame = startFrame
 						animFrames[currentFrame].isVisible = true
@@ -254,17 +251,17 @@ function new()
 		local function prevFrame( self, event )
 			animFrames[currentFrame].isVisible = false
 			currentFrame = currentFrame - 1
-		
 			if (currentFrame == endFrame - 1) then
 				if (loop > 0) then
 					loopCount = loopCount + 1
 
 					if (loopCount == loop) then 
-						-- stop looping
 						currentFrame = currentFrame + 1
 						animFrames[currentFrame].isVisible = true
 						Runtime:removeEventListener( "enterFrame", self )
-
+						paused = true
+						g.aspeed = nil
+						mcx:log("Finished " .. animName)
 						if (remove) then
 							-- delete self
 							self.parent:remove(self)
@@ -285,87 +282,35 @@ function new()
 				animFrames[currentFrame].isVisible = true
 			
 			else
+				mcx:log(currentFrame)
 				animFrames[currentFrame].isVisible = true
 			
 			end
 		end
 	
 	
-		local function dragMe(self, event)
-			local onPress = self._onPress
-			local onDrag = self._onDrag
-			local onRelease = self._onRelease
-	
-			if event.phase == "began" then
-				display.getCurrentStage():setFocus( self )
-				startX = g.x
-				startY = g.y
-			
-				if onPress then
-					result = onPress( event )
-				end
-			
-			elseif event.phase == "moved" then
-	
-				if transpose == true then
-					-- Note: "transpose" is deprecated now that Corona supports native landscape mode
-					-- dragBounds is omitted in transposed mode, but feel free to implement it
-					if limitX ~= true then
-						g.x = startX - (event.yStart - event.y)
-					end
-					if limitY ~= true then
-						g.y = startY + (event.xStart - event.x)
-					end
-				else
-					if limitX ~= true then
-						g.x = startX - (event.xStart - event.x)
-						if (dragBounds) then
-							if (g.x < dragLeft) then g.x = dragLeft end
-							if (g.x > dragLeft + dragWidth) then g.x = dragLeft + dragWidth end
-						end
-					end
-					if limitY ~= true then
-						g.y = startY - (event.yStart - event.y)
-						if (dragBounds) then
-							if (g.y < dragTop) then g.y = dragTop end
-							if (g.y > dragTop + dragHeight) then g.y = dragTop + dragHeight end
-						end
-					end
-				end
-
-				if onDrag then
-					result = onDrag( event )
-				end
-				
-			elseif event.phase == "ended" then
-				display.getCurrentStage():setFocus( nil )
-
-				if onRelease then
-					result = onRelease( event )
-				end
-			
-			end
-		
-			-- stop touch from falling through to objects underneath
-			return true
-		end
-
 
 		------------------------
 		-- Define public methods
 
 		function g:enterFrame( event )
 			--mcx:log(g.progress)
+			--mcx:log(g.direction)
 			if (g.progress == 0) then
+				if (g.direction == forward() and self.repeatFunction == prevFrame) then
+					mcx:log("NEXT")
+					self.repeatFunction = nextFrame
+				elseif (g.direction == backward() and self.repeatFunction == nextFrame) then
+					mcx:log("PREVIOUS")
+					self.repeatFunction = prevFrame
+				end
 				self:repeatFunction( event )
 				if (g.aspeed == nil) then
-					--print(g.speed)
 					g.progress = g.speed
 				else
 					g.progress = g.speed/g.aspeed
 				end
 			else
-				--print("waiting")
 				g.progress = g.progress - 1
 			end
 		end
@@ -419,7 +364,6 @@ function new()
 	
 		function g:reverse( params )
 			Runtime:removeEventListener( "enterFrame", self )
-		
 			if ( params ) then
 				-- if any parameters are submitted, assume this is a new sequence and reset all default values
 				animFrames[currentFrame].isVisible = false
@@ -473,7 +417,7 @@ function new()
 			-- stop current sequence, if any, and reset to defaults
 			Runtime:removeEventListener( "enterFrame", self )
 			inSequence = false
-		
+			
 			animFrames[currentFrame].isVisible = false
 			currentFrame = currentFrame - 1
 			if ( currentFrame < 1 ) then
@@ -537,44 +481,6 @@ function new()
 			Runtime:addEventListener( "enterFrame", self )
 		end
 
-
-		function g:setDrag( params )
-			if ( params ) then
-				if params.drag == true then
-					limitX = (params.limitX == true)
-					limitY = (params.limitY == true)
-					transpose = (params.transpose == true)
-					dragBounds = nil
-				
-					if ( params.onPress and ( type(params.onPress) == "function" ) ) then
-						g._onPress = params.onPress
-					end
-					if ( params.onDrag and ( type(params.onDrag) == "function" ) ) then
-						g._onDrag = params.onDrag
-					end
-					if ( params.onRelease and ( type(params.onRelease) == "function" ) ) then
-						g._onRelease = params.onRelease
-					end
-					if ( params.bounds and ( type(params.bounds) == "table" ) ) then
-						dragBounds = params.bounds
-						dragLeft = dragBounds[1]
-						dragTop = dragBounds[2]
-						dragWidth = dragBounds[3]
-						dragHeight = dragBounds[4]
-					end
-				
-					g.touch = dragMe
-					g:addEventListener( "touch", g )
-				
-				else
-					g:removeEventListener( "touch", g )
-					dragBounds = nil
-				
-				end
-			end
-		end
-
-
 		-- Optional function to assign text labels to frames
 		function g:setLabels(labelTable)
 			for k, v in next, labelTable do
@@ -635,6 +541,11 @@ function new()
 			animName = name
 			paused = false
 		end
+	end
+	
+	function mcx:setDirection(direction)
+		mcx:log("playing " .. animName .. " in " .. direction .. " direction")
+		clips[animName].direction = direction
 	end
 	
 	function mcx:stop()
