@@ -1,5 +1,8 @@
 ![ScreenShot](https://raw.github.com/iGARET/MovieClipX/master/pr/banner.png)
 
+## Dear MovieClipX users,
+This library is antiquated and hasn't been tested in Corona SDK for over 3 years. If you'd like to continue the development, please feel free to fork this :blush:
+
 ## MovieClipX
 MovieClipX (mcx) is a very slick library based off the original MovieClip library for Corona SDK. It adds a few very awesome features including
 * mcx objects. A MovieClip master object capable of housing multiple different MovieClip animations.
